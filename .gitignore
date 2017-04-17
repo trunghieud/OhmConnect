@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.coverage
+.cache
+htmlcov/
+tags
+*.pyc
+pge/*
+tmp/*
+uploads/*
+public/media/data/*
+public/uploads/*
+public/webassets-external/*
+public/.webassets-cache/*
+log/*
