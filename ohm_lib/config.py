@@ -3,11 +3,6 @@ import cStringIO
 import os
 import stat
 
-try:
-    from ansible.parsing.vault import VaultLib
-except ImportError:
-    from ansible.utils.vault import VaultLib
-
 
 class Config(dict):
     def __init__(self, passed_filenames=None):
@@ -101,7 +96,7 @@ class Config(dict):
                     exit(1)
                 vault_password = open(filepath).readline().strip()
 
-        vault = vault_password and VaultLib(password=vault_password)
+        vault = vault_password
 
         internal_config = ConfigParser.RawConfigParser()
 
