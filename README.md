@@ -17,24 +17,24 @@
 
 ### Checkpoint ###
 1. Before proceeding further, ensure that you can:
-  ** see 3 rows in the user table in your database
-  ** Start the app with `python app_test.py`
-  ** The page at /dashboard is now visible and welcomes you to the task. This page will automatically log you in as user 1.
-  ** You can run unit tests with `py.test tests` and see 2 tests passing.
+    * see 3 rows in the user table in your database
+    * Start the app with `python app_test.py`
+    * The page at /dashboard is now visible and welcomes you to the task. This page will automatically log you in as user 1.
+    * You can run unit tests with `py.test tests` and see 2 tests passing.
 
 ## Your Task ##
 1. Change the username displayed in the top right corner of the page
-  ** Instead of "Chuck Norris", it should show the user's email
+    * Instead of "Chuck Norris", it should show the user's email
 
 2. Write a migration to increase the point_balance for user 2 to 1000, and the tier for user 3 to Bronze
 
 3. Add a new route at /community
-  ** Add this as a dropdown option in the top right corner of the page, below "Dashboard"
-  ** List the 5 most recent users (most recently signed up user first), with columns for user's tier, point_balance, display_name, and phone number.
-  ** Assume we want this query to be fast, so use a raw MySQL query rather than any built-in ORM methods.
-  ** Some users may have more than 1 phone number, each phone number should be displayed on a separate line.
-  ** This table of users should be bordered and striped (ie alternate rows and with grey and white stripes)
-  ** For each user, make the display_name clickable. Clicking this link should open a modal which shows the user's location.
+    * Add this as a dropdown option in the top right corner of the page, below "Dashboard"
+    * List the 5 most recent users (most recently signed up user first), with columns for user's tier, point_balance, display_name, and phone number.
+    * Assume we want this query to be fast, so use a raw MySQL query rather than any built-in ORM methods.
+    * Some users may have more than 1 phone number, each phone number should be displayed on a separate line.
+    * This table of users should be bordered and striped (ie alternate rows and with grey and white stripes)
+    * For each user, make the display_name clickable. Clicking this link should open a modal which shows the user's location.
 
 4. Add any unit tests you think is appropriate.
 
@@ -44,6 +44,3 @@
 3. MySQL
 4. CSS and Javascript
 5. Development practices / code organization
-
-
-
