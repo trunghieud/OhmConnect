@@ -83,7 +83,7 @@ class Config(dict):
                 'config/my_main.cnf',
                 'config/my_common.cnf',
                 'config/my_host.cnf',
-                'config/my_%s.cnf' % environment
+                'config/my_%s.cnf'
             )
 
         vault_password = os.environ.get('VAULT_PASSWORD')
