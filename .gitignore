@@ -12,4 +12,7 @@ public/media/data/*
 public/uploads/*
 public/webassets-external/*
 public/.webassets-cache/*
+config/my_development.cnf
+config/my_test.cnf
 log/*
+venv/*
