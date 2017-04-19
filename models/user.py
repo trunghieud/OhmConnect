@@ -198,6 +198,18 @@ class User(db.Model):
     def get_id(self):
         return self.user_id
 
+    @staticmethod
+    def get_five_recent():
+        result = db.engine.execute(
+                    '''
+                          SELECT * FROM (
+                                  SELECT * FROM user ORDER BY user_id DESC LIMIT 5
+                          ) sub
+                          ORDER BY user_id ASC
+                    '''
+        )
+        return [row for row in result]
+
 
     def __eq__(self, other):
         '''
