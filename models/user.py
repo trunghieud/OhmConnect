@@ -202,10 +202,12 @@ class User(db.Model):
     def get_five_recent():
         result = db.engine.execute(
                     '''
-                          SELECT * FROM (
-                                  SELECT * FROM user ORDER BY user_id DESC LIMIT 5
-                          ) sub
-                          ORDER BY user_id ASC
+                          SELECT email_address, user.user_id, tier, point_balance, display_name,
+                                 group_concat(rel_user_multi.attribute) as attributes
+                          FROM user
+                          LEFT OUTER JOIN rel_user_multi
+                          ON user.user_id = rel_user_multi.user_id
+                          GROUP BY user_id DESC LIMIT 5
                     '''
         )
         return [row for row in result]

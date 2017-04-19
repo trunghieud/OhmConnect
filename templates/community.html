@@ -148,6 +148,7 @@
                                 <td>Tier</td>
                                 <td>Point balance</td>
                                 <td>Display name</td>
+                                <td>Phones</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -157,6 +158,12 @@
                                 <td>{{ user.tier }}</td>
                                 <td>{{ user.point_balance }}</td>
                                 <td><a class="display_name" content="{{ user.display_name }}">{{ user.display_name }}</a></td>
+                                {% set phones = user.attributes.split(',') if user.attributes else [] %}
+                                <td>
+                                    {% for phone in phones %}
+                                        {{ phone }}
+                                    {% endfor %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
