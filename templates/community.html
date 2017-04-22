@@ -1,0 +1,111 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+    <style>
+        html, body {
+            background-color: #f1f1f2;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        body, p, h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", sans-serif;
+            color: #808284;
+        }
+
+        .container {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #808284;
+            padding-top: 50px;
+            background: #f1f1f2;
+            padding-bottom: 50px;
+        }
+
+        #community-top-spacer {
+            height: 25px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+
+<div id="container" class="container">
+    <div id="community-top-spacer">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>
+                        Display Name
+                    </th>
+                    <th>
+                        Tier
+                    </th>
+                    <th>
+                        Point balance
+                    </th>
+                    <th>
+                        Phones
+                    </th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td rowspan="{{ user.phones|length or 1}}">
+                        <a href="#" class="show-modal" data-location="{{ user.location or "Unknown" }}">
+                            {{ user.display_name }}
+                        </a>
+                    </td>
+                    <td rowspan="{{ user.phones|length or 1}}">{{ user.tier }}</td>
+                    <td rowspan="{{ user.phones|length or 1}}">{{ user.point_balance }}</td>
+                    <td>{{ user.phones.0 }}</td>
+                </tr>
+                {% for phone in user.phones %}
+                {% if not loop.first %}
+                    <td>{{ phone }}</td>
+                {%  endif %}
+                {%  endfor  %}
+                {%  endfor  %}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="location-modal">
+      <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h5 class="modal-title">Location</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                  </div>
+                  <div class="modal-body">
+                        <p id="location-text"></p>
+                  </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+            </div>
+      </div>
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+<script>
+    $(document).ready(function() {
+        $('.show-modal').click(function (e) {
+            e.preventDefault(); // to hide # in url
+            $('#location-text').html($(this).data().location);
+            $('#location-modal').modal()
+        })
+    });
+</script>
+{% endblock %}

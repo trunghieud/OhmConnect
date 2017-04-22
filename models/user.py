@@ -252,3 +252,31 @@ class User(db.Model):
     def find_by_attribute(cls, rel_lookup, attribute):
         return User.query.join(RelUser).filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+
+    @staticmethod
+    def get_recent(limit=5):
+        def row_to_dict(row):
+            d = {k: v for k, v in row.items()}
+            d['phones'] = d['phones'].split(',') if d['phones'] else []
+            return d
+
+        query = """
+            SELECT
+                user.user_id,
+                user.signup_date,
+                user.tier,
+                user.point_balance,
+                user.display_name,
+                group_concat(r_multi.attribute) as phones,
+                r.attribute as location
+            FROM
+                user
+                LEFT OUTER JOIN (
+                SELECT * from rel_user_multi where rel_lookup='PHONE') as r_multi on user.user_id = r_multi.user_id
+                LEFT OUTER JOIN (
+                SELECT * from rel_user where rel_lookup='LOCATION') as r  on user.user_id = r.user_id
+            group by user.user_id
+            order by user.signup_date desc
+            limit {}
+        """.format(limit)
+        return [row_to_dict(row) for row in db.engine.execute(query)]
