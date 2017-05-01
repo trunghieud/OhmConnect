@@ -7,6 +7,7 @@ from ._helpers import *
 from .rel_user import RelUser
 from .rel_user_multi import RelUserMulti
 from .rel_user_text import RelUserText
+from sqlalchemy import text
 
 
 class User(db.Model):
@@ -252,3 +253,20 @@ class User(db.Model):
     def find_by_attribute(cls, rel_lookup, attribute):
         return User.query.join(RelUser).filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+    @classmethod
+    def get_five_recent_users(cls):
+        sql = text('SELECT * FROM user ORDER BY signup_date LIMIT 5')
+        result = db.engine.execute(sql).fetchall()
+        return result
+
+    @classmethod
+    def get_phone_numbers_by_user_id(cls, user_id):
+        sql = text('SELECT attribute FROM rel_user_multi WHERE user_id=:u')
+        result = db.engine.execute(sql, u=user_id)
+        return result
+
+    @classmethod
+    def get_location_by_user_id(cls, user_id):
+        sql = text('SELECT attribute FROM rel_user WHERE user_id=:u')
+        result = db.engine.execute(sql, u=user_id).fetchall()
+        return result

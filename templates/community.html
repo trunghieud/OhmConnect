@@ -1,0 +1,69 @@
+{% extends "base_map.html" %}
+{%  block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+
+{% endblock %}
+{% block body %}
+    <script>
+        $( function() {
+            $( "#dialog" ).dialog({
+              autoOpen: false,
+              show: {
+                effect: "blind",
+                duration: 1000
+              },
+              hide: {
+                effect: "explode",
+                duration: 1000
+              }
+            });
+
+            $( ".opener-js" ).on( "click", function() {
+                var dialog = $('#dialog');
+                var location = $(this).attr('data-location');
+                if (location) {
+                    dialog.html(location);
+                }else{
+                    dialog.html('Location is not defined');
+                }
+                dialog.dialog( "open" );
+            });
+        });
+    </script>
+    <div class="container mt-55">
+        <h2>List of users</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Display Name</th>
+                    <th>Tier</th>
+                    <th>Point Balance</th>
+                    <th>Phone number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    {% if phones[user.user_id] %}
+                        {% for phone in phones[user.user_id] %}
+                            <tr>
+                                <td><a type="button" class="opener-js" data-location="{{ locations[user.user_id]|string}}"> {{ user.display_name }}</a></td>
+                                <td>{{ user.tier }}</td>
+                                <td>{{ user.point_balance }}</td>
+                                <td>{{ phone[0]| int }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td><a type="button" class="opener-js" data-location="{{ locations[user.user_id]|string}}"> {{ user.display_name }}</a></td>
+                            <td>{{ user.tier }}</td>
+                            <td>{{ user.point_balance }}</td>
+                            <td></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="dialog" title="Basic dialog"></div>
+{% endblock %}
