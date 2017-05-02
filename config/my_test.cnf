@@ -1,0 +1,22 @@
+[access-db]
+host = localhost
+password = root
+user = root
+port = 3306
+database = my_tests
+
+[redis]
+host = 127.0.0.1
+
+[track]
+aws_enabled = True
+kinesis_enabled = True
+
+[custom]
+base_url = http://local.ohm.com:6543
+oem = Ohm
+redirect_url = http://ohmc.co
+
+[logging]
+colored = enabled
+ohmhour = DEBUG

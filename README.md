@@ -5,11 +5,11 @@
 4. Write your code as if you were a team member working on a joint codebase with other developers.
 
 ### Setup ###
-1. Setup for a new python project as normal, eg virtualenv, install requirements.txt, etc.
-2. Update your config file at config/my_development.cnf
-3. Create your own MySQL databases with the same names as in my_development.cnf.template
-4. Import config/seed.sql into your database
-5. You need to have a local redis server running with `redis-server`
+1. Setup for a new python project as normal, eg virtualenv, install requirements.txt, etc. / done
+2. Update your config file at config/my_development.cnf / done
+3. Create your own MySQL databases with the same names as in my_development.cnf.template /done
+4. Import config/seed.sql into your database /done
+5. You need to have a local redis server running with `redis-server` / done
 6. Migrate to the latest version of the database with `alembic upgrade head`.
 7. Create my_test.cnf and repeat to create a test database to use for unit tests.
 8. Do not commit either of your config files to the git repo.
@@ -17,18 +17,18 @@
 
 ### Checkpoint ###
 1. Before proceeding further, ensure that you can:
-    * see 3 rows in the user table in your database
-    * Start the app with `python app_test.py`
-    * The page at /dashboard is now visible and welcomes you to the task. This page will automatically log you in as user 1.
+    * see 3 rows in the user table in your database /done
+    * Start the app with `python app_test.py` /done
+    * The page at /dashboard is now visible and welcomes you to the task. This page will automatically log you in as user 1. / done
     * You can run unit tests with `py.test tests` and see 2 tests passing.
 
 ## Your Task ##
 1. Change the username displayed in the top right corner of the page
-    * Instead of "Chuck Norris", it should show the user's email
+    * Instead of "Chuck Norris", it should show the user's email /done
 
-2. Write a migration to increase the point_balance for user 2 to 1000, and the tier for user 3 to Bronze
+2. Write a migration to increase the point_balance for user 2 to 1000, and the tier for user 3 to Bronze /done
 
-3. Add a new route at /community
+3. Add a new route at /community /done
     * Add this as a dropdown option in the top right corner of the page, below "Dashboard"
     * List the 5 most recent users (most recently signed up user first), with columns for user's tier, point_balance, display_name, and phone number.
     * Assume we want this query to be fast, so use a raw MySQL query rather than any built-in ORM methods.

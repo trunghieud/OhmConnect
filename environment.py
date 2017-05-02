@@ -1,6 +1,6 @@
 import os
 
-environment = os.environ.get('FLASK_ENVIRONMENT') or 'production'
+environment = os.environ.get('FLASK_ENVIRONMENT') or 'development'
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
