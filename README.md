@@ -13,6 +13,7 @@
 6. Migrate to the latest version of the database with `alembic upgrade head`.
 7. Create my_test.cnf and repeat to create a test database to use for unit tests.
 8. Do not commit either of your config files to the git repo.
+9. Create a new branch and push your changes
 
 
 ### Checkpoint ###
