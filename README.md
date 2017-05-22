@@ -7,17 +7,17 @@
 ### Setup ###
 1. Setup for a new python project as normal, we recommend using virtualenv
     * For more details, follow: http://timsherratt.org/digital-heritage-handbook/docs/python-pip-virtualenv/
-2. Setup a Redis server
-3. Setup a MySQL database
-2. Clone the ohm_assessment repository
-3. Add the pip modules: `pip install -r requirements.txt`
-4. Copy config/my_development.cnf.sample to config/my_development.cnf and update with your MySQL information
-5. Create your MySQL databases with the same names as the above
-6. Add to your environment: `FLASK_ENVIRONMENT=development`
-7. Migrate to the latest version of the database with `alembic upgrade head`.
-8. Create my_test.cnf and repeat to create a test database to use for unit tests.
-9. Do not commit either of your config files to the git repo.
-10. Create a new branch and push your changes
+2. Setup a MySQL database
+3. Clone the ohm_assessment repository
+4. Set your python path, eg `export PYTHONPATH=/path/to/my/repo`
+5. Add the pip modules: `pip install -r requirements.txt`
+6. Copy config/my_development.cnf.sample to config/my_development.cnf and update with your MySQL information
+7. Create your MySQL databases with the same names as the above
+8. Add to your environment: `FLASK_ENVIRONMENT=development`
+9. Migrate to the latest version of the database with `alembic upgrade head`.
+10. Create my_test.cnf and repeat to create a test database to use for unit tests.
+11. Do not commit either of your config files to the git repo.
+12. Create a new branch and push your changes
 
 ### Checkpoint ###
 1. Before proceeding further, ensure that you can:
