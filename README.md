@@ -8,7 +8,7 @@
 1. Setup for a new python project as normal, we recommend using virtualenv
     * For more details, follow: http://timsherratt.org/digital-heritage-handbook/docs/python-pip-virtualenv/
 2. Setup a MySQL database
-3. *Fork* the [ohm_assessment](https://bitbucket.org/ohmconnect/ohm_assessmentL) repository into your own repo
+3. *Fork* the [ohm_assessment](https://bitbucket.org/ohmconnect/ohm_assessment) repository into your own repo
 4. Set your python path, eg `export PYTHONPATH=/path/to/my/repo`
 5. Add the pip modules: `pip install -r requirements.txt`
 6. Copy config/my_development.cnf.sample to config/my_development.cnf and update with your MySQL information
@@ -18,6 +18,7 @@
 10. Create my_test.cnf and repeat to create a test database to use for unit tests.
 11. Do not commit either of your config files to the git repo.
 12. Push your changes. Note this should be on your *forked* repo, either on a master branch or any other branch. It should *not* be on the ohm_assessment repo.
+13. Open a pull request from your_repo/ohm_assessment/your_branch to ohmconnect/ohm_assessment/master. 
 
 ### Checkpoint ###
 1. Before proceeding further, ensure that you can:
@@ -42,9 +43,11 @@
 
 4. Add any unit tests you think is appropriate.
 
+5. Refer to the steps in "Setup" to fork and open a pull request. Note that your proficiency with Git is part of the assessment.
+
 ## Assessment Criteria ##
 1. Ability to handle ambiguous requirements.
 2. Python ability
 3. MySQL
 4. CSS and Javascript
-5. Development practices / code organization
+5. Development practices / code organization / development tools (eg git)
