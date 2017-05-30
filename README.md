@@ -16,9 +16,10 @@
 8. Add to your environment: `FLASK_ENVIRONMENT=development`
 9. Migrate to the latest version of the database with `alembic upgrade head`.
 10. Create my_test.cnf and repeat to create a test database to use for unit tests.
-11. Do not commit either of your config files to the git repo.
-12. Push your changes. Note this should be on your *forked* repo, either on a master branch or any other branch. It should *not* be on the ohm_assessment repo.
-13. Open a pull request from your_repo/ohm_assessment/your_branch to ohmconnect/ohm_assessment/master. 
+11. Create the test tables with `FLASK_ENVIRONMENT=test alembic upgrade head`
+12. Do not commit either of your config files to the git repo.
+13. Push your changes. Note this should be on your *forked* repo, either on a master branch or any other branch. It should *not* be on the ohm_assessment repo.
+14. Open a pull request from your_repo/ohm_assessment/your_branch to ohmconnect/ohm_assessment/master. 
 
 ### Checkpoint ###
 1. Before proceeding further, ensure that you can:
