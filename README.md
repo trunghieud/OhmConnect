@@ -14,8 +14,9 @@
 6. Copy config/my_development.cnf.sample to config/my_development.cnf and update with your MySQL information
 7. Create your MySQL databases with the same names as the above
 8. Add to your environment: `FLASK_ENVIRONMENT=development`
-9. Migrate to the latest version of the database with `alembic upgrade head`.
-10. Create my_test.cnf and repeat to create a test database to use for unit tests.
+9. Import the seed.sql file into the database
+10. Migrate to the latest version of the database with `alembic upgrade head`.
+10. Create my_test.cnf, import seed.sql and update:`FLASK_ENVIRONMENT=test alembic upgrade head`
 11. Do not commit either of your config files to the git repo.
 12. Push your changes. Note this should be on your *forked* repo, either on a master branch or any other branch. It should *not* be on the ohm_assessment repo.
 13. Open a pull request from your_repo/ohm_assessment/your_branch to ohmconnect/ohm_assessment/master. 
