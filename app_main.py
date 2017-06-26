@@ -205,4 +205,4 @@ def redirect_to_passthrough(url='/'):
 
 
 
-import pages.dashboard
+from pages import dashboard, community
