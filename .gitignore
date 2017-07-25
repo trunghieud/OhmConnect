@@ -13,3 +13,5 @@ public/uploads/*
 public/webassets-external/*
 public/.webassets-cache/*
 log/*
+config/my_test.cnf
+config/my_development.cnf
