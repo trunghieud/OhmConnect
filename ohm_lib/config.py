@@ -196,6 +196,3 @@ if __name__ == "__main__":
     print("--------------------------------")
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(config())
-
-
-
