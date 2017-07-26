@@ -86,16 +86,37 @@
                 <div class="twothirds_div">
                   <h1>Community</h1>
 
-                  <div class="user_list">
-                    <ul>
-                      {% for user in users %}
-                      <li>{{user.display_name}}</li>
-                      {% endfor %}
-                    </ul>
-                  </div>
+                    <div class="container">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Tier</th>
+                            <th>Point Balance</th>
+                            <th>Phone Numbers</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for user in users %}
+                          <tr>
+                            <td>{{user.display_name}}</td>
+                            <td>{{user.tier}}</td>
+                            <td>{{user.point_balance}}</td>
+                            <td>
+                              {% if user.phone_numbers != None %}
+                                {% for number in user.phone_numbers.split(',') %}
+                                <p>{{number}}</p>
+                                {% endfor %}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+
                 </div>
             </div>
-
         </div>
 
     </div>
