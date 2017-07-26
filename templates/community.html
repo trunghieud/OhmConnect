@@ -25,51 +25,14 @@
             padding-bottom: 50px;
         }
 
-        #dashboard-top-spacer {
-            height: 25px;
+        .location-content{
+          padding: 20px;
         }
 
-        #referrals .leaderboard_points {
-            margin-top: 5px;
-        }
-
-        .well { height: 380px; overflow: hidden; }
-
-        .dashboard-tip-spot {
-            position: absolute;
-            z-index: 50;
-            bottom: 30px;
-            right: 20px;
-            height: 26px;
-            width: 26px;
-            margin-top: 0px;
-            padding-top: 3px;
-            border-radius: 13px;
-            text-align: center;
-            background-color: #E6E7E8;
-            color: #A7A9AB;
-        }
-
-        @media (max-width: 768px) {
-          .dashboard-tip-spot { bottom: 10px; }
-        }
-
-        .dashboard-tip-spot-content {
-            display: none;
-        }
-
-        .warning-button {
-            display: block;
-            margin-top: 10px;
-            margin-right: auto;
-            margin-left: auto;
-            border: 1px solid #47bccc;
-            border-radius: 5px;
-            background-color: #47c1d2;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 300;
-            font-size: 14px;
-            text-align: center;
+        .gmap_canvas {
+          background: none !important;
+          height: 100%;
+          width: 100%;
         }
 
     </style>
@@ -88,6 +51,7 @@
 
                     <div class="container">
                       <table class="table table-bordered table-striped">
+
                         <thead>
                           <tr>
                             <th>Name</th>
@@ -96,10 +60,12 @@
                             <th>Phone Numbers</th>
                           </tr>
                         </thead>
+
                         <tbody>
                           {% for user in users %}
+
                           <tr>
-                            <td>{{user.display_name}}</td>
+                            <td><a data-toggle="modal" data-target="#locationModal" data-location="{{user.location}}">{{user.display_name}}</a></td>
                             <td>{{user.tier}}</td>
                             <td>{{user.point_balance}}</td>
                             <td>
@@ -110,15 +76,47 @@
                               {% endif %}
                             </td>
                           </tr>
+
+
                           {% endfor %}
                         </tbody>
+
                       </table>
+
                     </div>
 
                 </div>
             </div>
         </div>
-
     </div>
+
+    <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="location-content">
+            <b>Location</b>: <span class="location-val"></span>
+            <br>
+            <br>
+            <div class="gmap"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $('#locationModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var location = button.data('location') // Extract info from data-* attributes
+        var modal = $(this)
+        modal.find('.location-val').text(location)
+        if((location != "None") && (location.length > 1)){
+          var mapHTML = ('<div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=' + location + '&t=&z=4&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>') //create google map from location
+          modal.find('.gmap').html(mapHTML)
+        }else{
+          modal.find('.gmap').html("")
+        }
+      })
+    </script>
+
 
 {% endblock %}
