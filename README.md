@@ -1,7 +1,7 @@
 # README #
 1. This is a sample application with basic functionality for the purposes of assessing technical candidates only.
 2. Do not be overly concerned if there is code in this application which does not appear to do anything or is imperfect. Just focus on the task below.
-3. Don't spend more than 2 hours in total on installation and these tasks. It is ok if you do not get to everything.
+3. Usually it takes about 2 hours in total on installation and these tasks. We don't ask that you spend more than this, and it is ok if you do not get to everything.
 4. Write your code as if you were a team member working on a joint codebase with other developers.
 
 ### Setup ###
