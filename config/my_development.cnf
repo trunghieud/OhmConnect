@@ -1,5 +1,5 @@
 [access-db]
-host = localhost_1
+host = localhost
 password = root
 user = root
 port = 3306

@@ -20,3 +20,6 @@ redirect_url = http://ohmc.co
 [logging]
 colored = enabled
 ohmhour = DEBUG
+
+[environment]
+FLASK_ENVIRONMENT=development
