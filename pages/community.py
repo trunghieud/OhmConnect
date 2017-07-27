@@ -7,7 +7,6 @@ from models import RelUserMulti
 from models import RelUser
 from models._helpers import *
 
-
 @app.route('/community', methods=['GET'])
 def community():
     login_user(User.query.get(1))
@@ -23,4 +22,5 @@ def community():
                             '''
         )
     }
+    
     return render_template("community.html", **args)
