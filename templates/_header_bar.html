@@ -157,7 +157,7 @@
 
 <div id="header_bar" class="header-bar">
     <div class="header-logo js-header-logo header-link-item dropdown-toggle" data-toggle="dropdown">
-        <a href="/dashboard"> <img src="/images/{{ oem }}//menu_logo.png" alt="ohmconnect" Title="Ohmconnect Home"> </a>
+        <a href="/dashboard"> <img src="/images/{{ oem }}//menu_logo.png" alt="ohmconnect" Title="Ohmconnect"> </a>
     </div>
 
     {% include "%s/_header_links.html" % oem %}
@@ -165,7 +165,7 @@
     <div id="header-dropdown-block">
         <div id="header-dropdown" class="header-right-item dropdown-toggle" data-toggle="dropdown">
             <div id="header-name" class="display_short_name js-short-name">
-                {{ current_user.short_name() }}
+                {{ current_user.email_address }}
             </div>
             <div id="header-dropdown-icon-block">
                 <img id="header-dropdown-icon" src="/images/dropdown_triangle.png"/>
@@ -180,6 +180,16 @@
                     </div>
                     <div class="dropdown-menu-text">
                         Dashboard
+                    </div>
+                </a>
+            </li>
+			<li class="dropdown-menu-item dropdown-menu-underline">
+                <a href="/community">
+                    <div class="dropdown-menu-icon">
+                        <img src="/images/{{ oem }}/navigation_bar_settings_active.png">
+                    </div>
+                    <div class="dropdown-menu-text">
+                        Community
                     </div>
                 </a>
             </li>
