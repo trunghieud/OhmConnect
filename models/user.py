@@ -154,6 +154,9 @@ class User(db.Model):
     def short_name(self):
         return self.display_name
 
+    def email(self):
+        return self.email_address
+
     def get_points_and_dollars(self):
         points = int(self.point_balance)
         return {"points": points, "dollars": points / 100}
@@ -252,3 +255,14 @@ class User(db.Model):
     def find_by_attribute(cls, rel_lookup, attribute):
         return User.query.join(RelUser).filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+    @classmethod
+    def recent_users(cls):
+        result = db.engine.execute(
+            'SELECT * FROM user as T1 ' \
+                'LEFT OUTER JOIN ' \
+                '(SELECT user_id, attribute AS phone_number from rel_user_multi WHERE rel_lookup in ("PHONE")) as T2 ' \
+                'ON T1.user_id = T2.user_id '
+                'LEFT OUTER JOIN ' \
+                '(SELECT user_id, attribute AS location from rel_user WHERE rel_lookup in ("LOCATION")) as T3 ' \
+                'ON T1.user_id = T3.user_id ')
+        return result
