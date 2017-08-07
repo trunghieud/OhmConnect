@@ -1,0 +1,122 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+
+    <style>
+        html, body {
+            background-color: #f1f1f2;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        body, p, h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", sans-serif;
+            color: #808284;
+        }
+
+        .container {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #808284;
+            padding-top: 50px;
+            background: #f1f1f2;
+            padding-bottom: 50px;
+        }
+
+        .location-content{
+          padding: 20px;
+        }
+
+        .gmap_canvas {
+          background: none !important;
+          height: 100%;
+          width: 100%;
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="dashboard-top-spacer">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="twothirds_div">
+                  <h1>Community</h1>
+
+                    <div class="container">
+                      <table class="table table-bordered table-striped">
+
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Tier</th>
+                            <th>Point Balance</th>
+                            <th>Phone Numbers</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for user in users %}
+
+                          <tr>
+                            <td><a data-toggle="modal" data-target="#locationModal" data-location="{{user.location}}">{{user.display_name}}</a></td>
+                            <td>{{user.tier}}</td>
+                            <td>{{user.point_balance}}</td>
+                            <td>
+                              {% if user.phone_numbers != None %}
+                                {% for number in user.phone_numbers.split(',') %}
+                                <p>{{number}}</p>
+                                {% endfor %}
+                              {% endif %}
+                            </td>
+                          </tr>
+
+
+                          {% endfor %}
+                        </tbody>
+
+                      </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="location-content">
+            <b>Location</b>: <span class="location-val"></span>
+            <br>
+            <br>
+            <div class="gmap"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $('#locationModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var location = button.data('location') // Extract info from data-* attributes
+        var modal = $(this)
+        modal.find('.location-val').text(location)
+        if((location != "None") && (location.length > 1)){
+          var mapHTML = ('<div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=' + location + '&t=&z=4&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>') //create google map from location
+          modal.find('.gmap').html(mapHTML)
+        }else{
+          modal.find('.gmap').html("")
+        }
+      })
+    </script>
+
+
+{% endblock %}
