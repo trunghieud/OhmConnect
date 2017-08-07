@@ -1,0 +1,145 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+
+    <style>
+        html, body {
+            background-color: #f1f1f2;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        body, p, h1, h2, h3, h4, h5, h6 {
+            font-family: "Open Sans", sans-serif;
+            color: #808284;
+        }
+
+        .container {
+            font-family: "Open Sans", sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #808284;
+            padding-top: 50px;
+            background: #f1f1f2;
+            padding-bottom: 50px;
+        }
+
+        #dashboard-top-spacer {
+            height: 25px;
+        }
+
+        #referrals .leaderboard_points {
+            margin-top: 5px;
+        }
+
+        .well { height: 380px; overflow: hidden; }
+
+        .dashboard-tip-spot {
+            position: absolute;
+            z-index: 50;
+            bottom: 30px;
+            right: 20px;
+            height: 26px;
+            width: 26px;
+            margin-top: 0px;
+            padding-top: 3px;
+            border-radius: 13px;
+            text-align: center;
+            background-color: #E6E7E8;
+            color: #A7A9AB;
+        }
+
+        @media (max-width: 768px) {
+          .dashboard-tip-spot { bottom: 10px; }
+        }
+
+        .dashboard-tip-spot-content {
+            display: none;
+        }
+
+        .warning-button {
+            display: block;
+            margin-top: 10px;
+            margin-right: auto;
+            margin-left: auto;
+            border: 1px solid #47bccc;
+            border-radius: 5px;
+            background-color: #47c1d2;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .TFtable{
+            width:100%;
+            border-collapse:collapse;
+        }
+        .TFtable td{
+            padding:7px; border:#4e95f4 1px solid;
+        }
+        /* provide some minimal visual accomodation for IE8 and below */
+        .TFtable tr{
+            background: #FFFFFF;
+        }
+        /*  Define the background color for all the ODD background rows  */
+        .TFtable tr:nth-child(odd){
+            background: #D0D0D0;
+        }
+        /*  Define the background color for all the EVEN background rows  */
+        .TFtable tr:nth-child(even){
+            background: #FFFFFF;
+        }
+
+       #popup{
+            display: none;
+            border: 1px solid black;
+        }
+
+        .display-name-modal{
+            cursor: pointer;
+        }
+    </style>
+
+    <script type="text/javascript">
+    function showPopup(name){
+        $("#popup").dialog({
+            width: 500,
+            height: 300,
+            open: function(){
+                $(this).find("p").html("Location: " + name)
+            }
+        });
+    }
+    </script>
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="dashboard-top-spacer">&nbsp;</div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="twothirds_div">
+                    <h1>Community Users</h1>
+
+                    <div id="popup" class="dialog">
+                        <a href="#close"></a>
+                        <p></p>
+                    </div>
+
+                    <table class="TFtable">
+                        <tr><td>Tier</td><td>Point Balance</td><td>Name</td><td>Phone Number</td></tr>
+                        {% for user in recent_users %}
+                        <tr><td>{{ user.tier }}</td><td>{{ user.point_balance }}</td><td onclick="showPopup('{{ user.location }}')">{{ user.display_name }}</td><td>{{ user.phone_number }}</td></tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
