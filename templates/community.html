@@ -1,0 +1,115 @@
+{% extends "base_map.html" %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/css/webflow_base.css">
+
+    <style>
+        body {
+            background-color: rgb(245, 245, 245);
+            font-family: "Open Sans", sans-serif;
+            font-size: 20px;
+            
+        }
+
+      
+        .container {
+            padding-top: 50px;
+            padding-bottom: 50px;
+
+            font-size: 20px;
+            font-weight: 300;
+            color: grey;
+            
+        }
+
+        .location-content{
+          padding: 20px;
+        }
+
+        td > a {
+			font-size: 20px;
+			
+            font-weight: bold;
+            color: black
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="container" class="container">
+        <div id="dashboard-top-spacer">&nbsp;</div>
+
+        <div class="row">
+        	
+            <div class="col-md-12">
+                
+                  <h1 align="center">Community</h1>
+
+                    <div class="container">
+                      <table class="table table-bordered table-striped">
+
+                        <thead>
+                         <tr>
+                           <th>User Name</th>
+                            <th>Tier</th>
+                            <th>Point Balance</th>
+                            <th>Phone Numbers</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for user in users %}
+
+                          <tr>
+                            <td><a data-toggle="modal" data-target="#modal" data-location="{{user.location}}">{{user.display_name}}</a></td>
+                            <td>{{user.tier}}</td>
+                            <td>{{user.point_balance}}</td>
+                            <td>
+                              {% if user.phone_numbers != None %}
+                                {% for number in user.phone_numbers.split(',') %}
+                                <p>{{number}}</p>
+                                {% endfor %}
+                              {% endif %}
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal">
+      <div class="modal-dialog" >
+        <div class="modal-content">
+          <div class="location-content">
+            <b>Location</b>: <i class="location-val"></i>
+            <br>
+            <div class="pop_up"> </div>
+          </div>
+       
+      </div>
+    </div>
+
+    <script>
+      $('#modal').on('show.bs.modal', function (event) {
+        
+        var location = $(event.relatedTarget).data('location')
+        var pop_up = $(this)
+        pop_up.find('.location-val').text(location)
+        
+        if((location != "None") && (location.length > 1)){
+          
+          pop_up.find('.pop_up').html('<div><iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=' + location + '&t=&z=4&ie=UTF8&iwloc=&output=embed" ></iframe></div>')
+        }else{
+          pop_up.find('.location').html("")
+        }
+      })
+    </script>
+
+
+{% endblock %}

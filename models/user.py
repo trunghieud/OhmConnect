@@ -151,6 +151,9 @@ class User(db.Model):
         self.display_name = name
         db.session.flush()
 
+    def email(self):
+        return self.email_address
+
     def short_name(self):
         return self.display_name
 
