@@ -45,6 +45,7 @@
 4. Add any unit tests you think is appropriate.
 
 5. Refer to the steps in "Setup" to fork and open a pull request. Note that your proficiency with Git is part of the assessment.
+    * Do not be concerned if your pull request is DECLINED. We do this routinely as part of assessment for all candidates.
 
 ## Assessment Criteria ##
 1. Ability to handle ambiguous requirements.
@@ -52,3 +53,6 @@
 3. MySQL
 4. CSS and Javascript
 5. Development practices / code organization / development tools (eg git)
+
+## Notes for Assessor ##
+Checklist and process described in [Confluence](https://ohmconnect.atlassian.net/wiki/spaces/OH/pages/28737540/Programming+Test) - restricted access.
