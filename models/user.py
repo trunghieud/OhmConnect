@@ -1,3 +1,4 @@
+from sqlalchemy import text
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm.collections import attribute_mapped_collection
 
@@ -154,6 +155,9 @@ class User(db.Model):
     def short_name(self):
         return self.display_name
 
+    def email(self):
+        return self.email_address
+
     def get_points_and_dollars(self):
         points = int(self.point_balance)
         return {"points": points, "dollars": points / 100}
@@ -214,6 +218,23 @@ class User(db.Model):
     ####################################################################################
     # Class methods ----------
     #
+    @classmethod
+    def get_by_date(cls):
+        sql = text('''SELECT tier, point_balance, display_name
+            FROM user
+            ORDER BY create_time DESC
+        ''')
+        result = db.engine.execute(sql)
+        recs = []
+        for row in result:
+            recs.append({
+                'tier': row[0],
+                'point_ballance': row[1],
+                'display_name': row[2]
+            })
+
+        return recs
+        
     @classmethod
     def last(cls):
         return cls.query.order_by(cls.user_id.desc()).first()
