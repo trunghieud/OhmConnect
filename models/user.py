@@ -252,3 +252,26 @@ class User(db.Model):
     def find_by_attribute(cls, rel_lookup, attribute):
         return User.query.join(RelUser).filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+    @staticmethod
+    def get_most_recent_users(num):
+	result = db.engine.execute("SELECT user_id FROM user ORDER BY signup_date DESC LIMIT {}".format(num))
+	return result.fetchall()
+
+    # Returns the num most recent users (ordered), and the related information for these users in results and phonenumbers
+    # as dictionaries user:data 
+    @staticmethod
+    def get_recent_user_data(num):
+        recent_users = User.get_most_recent_users(num)
+        recent_users = [user[0] for user in recent_users]
+        results = {}
+        phonenumbers = {}
+        location = {}
+        for user in recent_users:
+            user_info = db.engine.execute("SELECT display_name, tier, point_balance FROM user WHERE user_id = {}".format(user))
+            results[user] = user_info.fetchone()
+            phonenumbers[user] = ",".join([i[0] for i in RelUserMulti.get_phonenumber(user)])
+            user_location = RelUser.get_location(user)
+            if user_location:
+                location[user] = user_location[0]
+
+        return recent_users, results, phonenumbers, location

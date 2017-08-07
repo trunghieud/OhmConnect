@@ -19,3 +19,7 @@ class RelUser(db.Model):
     def find_by_lookup_attribute(cls, rel_lookup, attribute):
         return RelUser.query.filter_by(rel_lookup=rel_lookup, attribute=attribute).first()
 
+    @staticmethod
+    def get_location(user):
+        results = db.engine.execute("SELECT attribute FROM rel_user WHERE user_id={}".format(user))
+        return results.fetchone()
