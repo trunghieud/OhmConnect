@@ -1,7 +1,7 @@
 # README #
 1. This is a sample application with basic functionality for the purposes of assessing technical candidates only.
 2. Do not be overly concerned if there is code in this application which does not appear to do anything or is imperfect. Just focus on the task below.
-3. Usually it takes about 2 hours in total on installation and these tasks. We don't ask that you spend more than this, and it is ok if you do not get to everything.
+3. Usually it takes about 2 hours in total on installation and these tasks. To respect your time, we don't ask that you spend more than this, and it is ok if you do not get to everything.
 4. Write your code as if you were a team member working on a joint codebase with other developers.
 
 ### Setup ###
@@ -52,7 +52,8 @@
 2. Python ability
 3. MySQL
 4. CSS and Javascript
-5. Development practices / code organization / development tools (eg git)
+5. Tests 
+6. Development practices / code organization / development tools (eg git)
 
 ## Notes for Assessor ##
 Checklist and process described in [Confluence](https://ohmconnect.atlassian.net/wiki/spaces/OH/pages/28737540/Programming+Test) - restricted access.
